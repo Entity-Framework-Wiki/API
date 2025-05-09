@@ -189,11 +189,11 @@ Le projet est maintenant prêt à être utilisé et à communiquer avec la base de do
 
 
 
-### Configuration et Automatisation des Normes REST
+## Configuration et Automatisation des Normes REST
 
 Pour garantir une conformité stricte avec les normes REST tout en automatisant les processus de requêtes, le projet utilise **OData** associé à **Entity Framework Core**. Cette combinaison permet de simplifier les opérations CRUD tout en optimisant les requêtes pour récupérer uniquement les données nécessaires.
 
-#### Packages Requis
+### Packages Requis
 
 Pour configurer OData dans le projet, les packages suivants doivent être installés :
 
@@ -232,7 +232,7 @@ public class ProduitController(GestionCommerceContext context) : ODataController
 
 ---
 
-## Gestion des EDM (Entity Data Models)
+### Gestion des EDM (Entity Data Models)
 
 L'utilisation des EDM permet de contrôler les données exposées par les endpoints OData. Cela permet de limiter l'exposition des propriétés et de structurer les relations entre entités.
 

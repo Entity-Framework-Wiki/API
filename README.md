@@ -1,0 +1,299 @@
+# Introduction
+
+Ce projet a pour objectif d'illustrer la conception d'une API modulaire et adaptable à différentes typologies d'applications. L'architecture mise en œuvre est conçue pour automatiser plusieurs aspects du développement, notamment l'accès aux données, l'implémentation des normes REST et l'authentification.
+
+### Technologies Utilisées
+
+* **Entity Framework Core :** Fournit une couche d'abstraction pour l'accès aux données tout en permettant d'exécuter des requêtes SQL pures pour optimiser les performances. Il s'intègre parfaitement avec OData, permettant une configuration simplifiée.
+
+* **OData :** Automatisation des normes REST, permettant de récupérer uniquement les données nécessaires à l'application, de manière similaire à GraphQL.
+
+* **Auth0 :** Gestion des identités et des accès (IAM), avec intégration d'OAuth0 pour la sécurisation des endpoints.
+
+Cette architecture permet de structurer les modules de manière à maintenir une base de code évolutive et maintenable, tout en respectant les principes de séparation des responsabilités et de modularité.
+
+ 
+## Initialisation de la Base de Données
+
+Allez directement sur la section "Lancement du projet" si vous souhaitez uniquement exécuter le projet. Cette section sert principalement de mémo pour rappeler les étapes clés de l'initialisation de la base de données.
+
+L'initialisation de la base de données est une étape cruciale dans le processus de développement d'une API. Elle permet de structurer les données et de préparer l'environnement pour les opérations CRUD (Create, Read, Update, Delete). Dans ce projet, nous adoptons l'approche **Database First**, particulièrement efficace lorsque nous devons connecter notre application à une base de données déjà existante ou lorsque la structure des données est déjà bien définie.
+
+Allez directement sur la section "Lancement du Projet". Ceci est un mémo plus qu'autre chose.
+
+### Pourquoi Database First (optionnel) ?
+
+* **Simplicité :** L'approche Database First permet de générer automatiquement les modèles d'entités à partir de la base de données existante.
+* **Flexibilité :** Idéale pour les projets où le schéma de base de données est susceptible de changer.
+* **Rapidité :** Permet de rapidement générer le contexte et les classes d'entités sans avoir à configurer manuellement le mapping Fluent API.
+
+### Structure de la Base de Données (optionnel)
+
+Dans notre projet, nous avons défini une structure de base de données SQL Server comprenant plusieurs modules : Produits, Commandes, Facturation, Rapports et Statistiques.
+
+Voici le script SQL permettant de créer cette base de données :
+
+```sql
+CREATE DATABASE GestionCommerce;
+GO
+
+USE GestionCommerce;
+GO
+
+-- Module Produits
+CREATE TABLE Produit (
+    product_id INT PRIMARY KEY,
+    nom NVARCHAR(100),
+    categorie_id INT,
+    marque_id INT,
+    prix DECIMAL(10, 2)
+);
+
+CREATE TABLE Categorie (
+    categorie_id INT PRIMARY KEY,
+    nom NVARCHAR(100)
+);
+
+CREATE TABLE Marque (
+    marque_id INT PRIMARY KEY,
+    nom NVARCHAR(100)
+);
+
+CREATE TABLE Inventaire (
+    inventory_id INT PRIMARY KEY,
+    product_id INT FOREIGN KEY REFERENCES Produit(product_id),
+    stock INT,
+    fournisseur_id INT
+);
+
+CREATE TABLE Fournisseur (
+    fournisseur_id INT PRIMARY KEY,
+    nom NVARCHAR(100),
+    contact NVARCHAR(100)
+);
+
+-- Module Commandes
+CREATE TABLE Commande (
+    order_id INT PRIMARY KEY,
+    date_commande DATETIME,
+    statut NVARCHAR(50)
+);
+
+CREATE TABLE LigneCommande (
+    ligne_id INT PRIMARY KEY,
+    order_id INT FOREIGN KEY REFERENCES Commande(order_id),
+    product_id INT FOREIGN KEY REFERENCES Produit(product_id),
+    quantite INT,
+    prix_unitaire DECIMAL(10, 2)
+);
+
+-- Module Facturation
+CREATE TABLE Facture (
+    invoice_id INT PRIMARY KEY,
+    order_id INT FOREIGN KEY REFERENCES Commande(order_id),
+    montant_total DECIMAL(10, 2),
+    date_facture DATETIME
+);
+
+CREATE TABLE Paiement (
+    payment_id INT PRIMARY KEY,
+    invoice_id INT FOREIGN KEY REFERENCES Facture(invoice_id),
+    montant DECIMAL(10, 2),
+    date_paiement DATETIME
+);
+
+-- Module Rapports et Statistiques
+CREATE TABLE Rapport (
+    report_id INT PRIMARY KEY,
+    type NVARCHAR(50),
+    date_creation DATETIME,
+    contenu NVARCHAR(MAX)
+);
+```
+
+### Packages Requis
+
+Pour configurer l'environnement et générer les entités, les packages suivants doivent être installés :
+
+* `Microsoft.EntityFrameworkCore.Design`
+* `Microsoft.EntityFrameworkCore.Tools`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+
+Commandes d'installation :
+
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+### Génération des Entités et du Contexte
+
+Pour générer les entités et le contexte de base de données, exécutez la commande suivante :
+
+```bash
+dotnet ef dbcontext scaffold "Server=localhost;Database=GestionCommerce;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Entities --context-dir ./
+```
+
+Pour générer des modules spécifiques :
+
+```bash
+dotnet ef dbcontext scaffold "Server=localhost;Database=GestionCommerce;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --table Produit -o Modules/Products/DAL/Produit --context GestionCommerceContext --no-onconfiguring
+```
+
+### Création de la Première Migration
+
+Pour créer la première migration :
+
+```bash
+dotnet ef migrations add InitialDatabase
+```
+
+Ensuite, pour appliquer la migration :
+
+```bash
+dotnet ef database update
+```
+
+### Synchronisation Manuelle de la Migration
+
+Insérez manuellement la migration dans le journal des migrations :
+
+```sql
+INSERT INTO __EFMigrationsHistory(MigrationId, ProductVersion) VALUES ('20250509065839_InitialDatabase', 9.0)
+```
+
+### Lancement du Projet
+
+Pour lancer le projet et initialiser la base de données, exécutez la commande suivante :
+
+```bash
+dotnet ef database update
+```
+
+Cette commande appliquera toutes les migrations et créera la base de données avec la structure définie dans le contexte.
+
+En cas de modifications ou d'ajouts dans le schéma de base de données, n'oubliez pas de créer une nouvelle migration :
+
+```bash
+dotnet ef migrations add NouvelleMigration
+```
+
+Puis, appliquez-la :
+
+```bash
+dotnet ef database update
+```
+
+Le projet est maintenant prêt à être utilisé et à communiquer avec la base de données.
+
+
+
+### Configuration et Automatisation des Normes REST
+
+Pour garantir une conformité stricte avec les normes REST tout en automatisant les processus de requêtes, le projet utilise **OData** associé à **Entity Framework Core**. Cette combinaison permet de simplifier les opérations CRUD tout en optimisant les requêtes pour récupérer uniquement les données nécessaires.
+
+#### Packages Requis
+
+Pour configurer OData dans le projet, les packages suivants doivent être installés :
+
+```bash
+ dotnet add package Microsoft.AspNetCore.OData
+ dotnet add package Microsoft.OData.ModelBuilder
+```
+
+> **Note :** À l'heure actuelle, OData ne prend pas en charge les APIs minimales. Par conséquent, il est nécessaire d'utiliser l'approche traditionnelle basée sur les controllers.
+
+---
+
+### Configuration des Controllers OData
+
+Pour chaque entité, un contrôleur OData est créé. Voici un exemple de configuration d'un contrôleur pour l'entité `Produit` :
+
+```csharp
+[Route("api/[controller]")]
+public class ProduitController(GestionCommerceContext context) : ODataController
+{
+    private readonly GestionCommerceContext _context = context;
+
+    [Route("odata/[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public async Task<IActionResult> Get(ODataQueryOptions<Produit> options)
+    {
+        IQueryable<Produit> query = _context.Produits;
+
+        var result = options.ApplyTo(query);
+
+
+        return this.Ok(result);
+    }
+}
+```
+
+---
+
+## Gestion des EDM (Entity Data Models)
+
+L'utilisation des EDM permet de contrôler les données exposées par les endpoints OData. Cela permet de limiter l'exposition des propriétés et de structurer les relations entre entités.
+
+Exemple de définition d'un EDM :
+
+```csharp
+using Microsoft.OData.ModelBuilder;
+using GestionCommerce.Entities;
+
+public static IEdmModel GetEdmModel()
+{
+    var builder = new ODataConventionModelBuilder();
+    var produits = builder.EntitySet<Produit>("Produits");
+    produits.EntityType.HasKey(p => p.ProductId);
+    produits.EntityType.Property(p => p.Nom);
+    produits.EntityType.HasMany(p => p.LigneCommandes);
+
+    return builder.GetEdmModel();
+}
+```
+
+---
+
+### Limitation des Données Exposées
+
+Pour renforcer la sécurité et limiter l'exposition des données, il est possible de n'utiliser que des DTOs (Data Transfer Objects) dans les EDM. Cela permet de masquer la structure interne de la base de données tout en contrôlant les propriétés exposées.
+
+De plus, pour des raisons de sécurité ou de lisibilité, il est également possible de renommer des propriétés exposées tout en conservant le nom d'origine des colonnes en base de données. Par exemple :
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+public class ProduitDTO
+{
+    [Key]
+    public int Id { get; set; }
+
+    [Column("NomProduit")]
+    public string Nom { get; set; }
+}
+```
+
+Dans cet exemple, la propriété `Nom` exposée dans l'API fait référence à la colonne `NomProduit` dans la base de données, permettant ainsi de masquer la structure interne sans compromettre le mapping des données.
+
+---
+
+### Exécution des Requêtes OData
+
+Les requêtes OData permettent d'exécuter des filtres complexes tout en limitant le volume de données retourné. Par exemple :
+
+* Obtenir les produits avec uniquement les propriétés `Nom` et `ProductId` :
+
+```
+GET https://localhost:7192/odata/Produits?$select=Nom,ProductId
+```
+
+* Obtenir les produits et leurs lignes de commande associées :
+
+```
+GET https://localhost:7192/odata/Produits?$expand=LigneCommandes
+```
+
+Cette structure permet une gestion centralisée des accès aux données, tout en automatisant le respect des normes REST via OData.

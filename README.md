@@ -280,6 +280,20 @@ Dans cet exemple, la propriété `Nom` exposée dans l'API fait référence à la colo
 
 ---
 
+### Génération de Clients via \$metadata
+
+Contrairement à Swagger, qui utilise OpenAPI pour générer des clients, OData dispose de son propre mécanisme basé sur `$metadata`. Ce point d'entrée permet de générer des clients pour divers langages, notamment **TypeScript**, **Java**, **C#**, etc., à partir de la structure des entités définies dans le modèle EDM.
+
+Exemple d'URL pour le metadata :
+
+```
+GET https://localhost:7192/odata/$metadata
+```
+
+Des outils tels que **OData Connected Service** pour .NET ou **odata-client-cli** pour TypeScript peuvent être utilisés pour générer automatiquement ces clients. Cela permet une synchronisation directe entre le modèle de données et le client, tout en assurant la conformité avec les normes OData.
+
+---
+
 ### Exécution des Requêtes OData
 
 Les requêtes OData permettent d'exécuter des filtres complexes tout en limitant le volume de données retourné. Par exemple :
@@ -297,3 +311,23 @@ GET https://localhost:7192/odata/Produits?$expand=LigneCommandes
 ```
 
 Cette structure permet une gestion centralisée des accès aux données, tout en automatisant le respect des normes REST via OData.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

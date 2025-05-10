@@ -19,10 +19,8 @@ public static class OdataConfiguration
 
     private static IEdmModel GetEdmModel()
     {
-        var builder = new ODataConventionModelBuilder();
-
-        builder.ConfigureProduitEdm();
-
+        var builder = new ODataConventionModelBuilder()
+            .ConfigureProduitEdm();
 
         return builder.GetEdmModel();
     }

@@ -1,37 +1,37 @@
-# Introduction
+Ôªø# Introduction
 
-Ce projet a pour objectif d'illustrer la conception d'une API modulaire et adaptable ‡ diffÈrentes typologies d'applications. L'architecture mise en úuvre est conÁue pour automatiser plusieurs aspects du dÈveloppement, notamment l'accËs aux donnÈes, l'implÈmentation des normes REST et l'authentification.
+Ce projet a pour objectif d'illustrer la conception d'une API modulaire et adaptable √† diff√©rentes typologies d'applications. L'architecture mise en ≈ìuvre est con√ßue pour automatiser plusieurs aspects du d√©veloppement, notamment l'acc√®s aux donn√©es, l'impl√©mentation des normes REST et l'authentification.
 
-### Technologies UtilisÈes
+### Technologies Utilis√©es
 
-* **Entity Framework Core :** Fournit une couche d'abstraction pour l'accËs aux donnÈes tout en permettant d'exÈcuter des requÍtes SQL pures pour optimiser les performances. Il s'intËgre parfaitement avec OData, permettant une configuration simplifiÈe.
+* **Entity Framework Core :** Fournit une couche d'abstraction pour l'acc√®s aux donn√©es tout en permettant d'ex√©cuter des requ√™tes SQL pures pour optimiser les performances. Il s'int√®gre parfaitement avec OData, permettant une configuration simplifi√©e.
 
-* **OData :** Automatisation des normes REST, permettant de rÈcupÈrer uniquement les donnÈes nÈcessaires ‡ l'application, de maniËre similaire ‡ GraphQL.
+* **OData :** Automatisation des normes REST, permettant de r√©cup√©rer uniquement les donn√©es n√©cessaires √† l'application, de mani√®re similaire √† GraphQL.
 
-* **Auth0 :** Gestion des identitÈs et des accËs (IAM), avec intÈgration d'OAuth0 pour la sÈcurisation des endpoints.
+* **Auth0 :** Gestion des identit√©s et des acc√®s (IAM), avec int√©gration d'OAuth0 pour la s√©curisation des endpoints.
 
-Cette architecture permet de structurer les modules de maniËre ‡ maintenir une base de code Èvolutive et maintenable, tout en respectant les principes de sÈparation des responsabilitÈs et de modularitÈ.
+Cette architecture permet de structurer les modules de mani√®re √† maintenir une base de code √©volutive et maintenable, tout en respectant les principes de s√©paration des responsabilit√©s et de modularit√©.
 
  
-## Initialisation de la Base de DonnÈes
+## Initialisation de la Base de Donn√©es
 
-Allez directement sur la section "Lancement du projet" si vous souhaitez uniquement exÈcuter le projet. Cette section sert principalement de mÈmo pour rappeler les Ètapes clÈs de l'initialisation de la base de donnÈes.
+Allez directement sur la section "Lancement du projet" si vous souhaitez uniquement ex√©cuter le projet. Cette section sert principalement de m√©mo pour rappeler les √©tapes cl√©s de l'initialisation de la base de donn√©es.
 
-L'initialisation de la base de donnÈes est une Ètape cruciale dans le processus de dÈveloppement d'une API. Elle permet de structurer les donnÈes et de prÈparer l'environnement pour les opÈrations CRUD (Create, Read, Update, Delete). Dans ce projet, nous adoptons l'approche **Database First**, particuliËrement efficace lorsque nous devons connecter notre application ‡ une base de donnÈes dÈj‡ existante ou lorsque la structure des donnÈes est dÈj‡ bien dÈfinie.
+L'initialisation de la base de donn√©es est une √©tape cruciale dans le processus de d√©veloppement d'une API. Elle permet de structurer les donn√©es et de pr√©parer l'environnement pour les op√©rations CRUD (Create, Read, Update, Delete). Dans ce projet, nous adoptons l'approche **Database First**, particuli√®rement efficace lorsque nous devons connecter notre application √† une base de donn√©es d√©j√† existante ou lorsque la structure des donn√©es est d√©j√† bien d√©finie.
 
-Allez directement sur la section "Lancement du Projet". Ceci est un mÈmo plus qu'autre chose.
+Allez directement sur la section "Lancement du Projet". Ceci est un m√©mo plus qu'autre chose.
 
 ### Pourquoi Database First (optionnel) ?
 
-* **SimplicitÈ :** L'approche Database First permet de gÈnÈrer automatiquement les modËles d'entitÈs ‡ partir de la base de donnÈes existante.
-* **FlexibilitÈ :** IdÈale pour les projets o˘ le schÈma de base de donnÈes est susceptible de changer.
-* **RapiditÈ :** Permet de rapidement gÈnÈrer le contexte et les classes d'entitÈs sans avoir ‡ configurer manuellement le mapping Fluent API.
+* **Simplicit√© :** L'approche Database First permet de g√©n√©rer automatiquement les mod√®les d'entit√©s √† partir de la base de donn√©es existante.
+* **Flexibilit√© :** Id√©ale pour les projets o√π le sch√©ma de base de donn√©es est susceptible de changer.
+* **Rapidit√© :** Permet de rapidement g√©n√©rer le contexte et les classes d'entit√©s sans avoir √† configurer manuellement le mapping Fluent API.
 
-### Structure de la Base de DonnÈes (optionnel)
+### Structure de la Base de Donn√©es (optionnel)
 
-Dans notre projet, nous avons dÈfini une structure de base de donnÈes SQL Server comprenant plusieurs modules : Produits, Commandes, Facturation, Rapports et Statistiques.
+Dans notre projet, nous avons d√©fini une structure de base de donn√©es SQL Server comprenant plusieurs modules : Produits, Commandes, Facturation, Rapports et Statistiques.
 
-Voici le script SQL permettant de crÈer cette base de donnÈes :
+Voici le script SQL permettant de cr√©er cette base de donn√©es :
 
 ```sql
 CREATE DATABASE GestionCommerce;
@@ -113,7 +113,7 @@ CREATE TABLE Rapport (
 
 ### Packages Requis
 
-Pour configurer l'environnement et gÈnÈrer les entitÈs, les packages suivants doivent Ítre installÈs :
+Pour configurer l'environnement et g√©n√©rer les entit√©s, les packages suivants doivent √™tre install√©s :
 
 * `Microsoft.EntityFrameworkCore.Design`
 * `Microsoft.EntityFrameworkCore.Tools`
@@ -127,23 +127,23 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-### GÈnÈration des EntitÈs et du Contexte
+### G√©n√©ration des Entit√©s et du Contexte
 
-Pour gÈnÈrer les entitÈs et le contexte de base de donnÈes, exÈcutez la commande suivante :
+Pour g√©n√©rer les entit√©s et le contexte de base de donn√©es, ex√©cutez la commande suivante :
 
 ```bash
 dotnet ef dbcontext scaffold "Server=localhost;Database=GestionCommerce;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Entities --context-dir ./
 ```
 
-Pour gÈnÈrer des modules spÈcifiques :
+Pour g√©n√©rer des modules sp√©cifiques :
 
 ```bash
 dotnet ef dbcontext scaffold "Server=localhost;Database=GestionCommerce;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --table Produit -o Modules/Products/DAL/Produit --context GestionCommerceContext --no-onconfiguring
 ```
 
-### CrÈation de la PremiËre Migration
+### Cr√©ation de la Premi√®re Migration
 
-Pour crÈer la premiËre migration :
+Pour cr√©er la premi√®re migration :
 
 ```bash
 dotnet ef migrations add InitialDatabase
@@ -157,7 +157,7 @@ dotnet ef database update
 
 ### Synchronisation Manuelle de la Migration
 
-InsÈrez manuellement la migration dans le journal des migrations :
+Ins√©rez manuellement la migration dans le journal des migrations :
 
 ```sql
 INSERT INTO __EFMigrationsHistory(MigrationId, ProductVersion) VALUES ('20250509065839_InitialDatabase', 9.0)
@@ -165,15 +165,15 @@ INSERT INTO __EFMigrationsHistory(MigrationId, ProductVersion) VALUES ('20250509
 
 ### Lancement du Projet
 
-Pour lancer le projet et initialiser la base de donnÈes, exÈcutez la commande suivante :
+Pour lancer le projet et initialiser la base de donn√©es, ex√©cutez la commande suivante :
 
 ```bash
 dotnet ef database update
 ```
 
-Cette commande appliquera toutes les migrations et crÈera la base de donnÈes avec la structure dÈfinie dans le contexte.
+Cette commande appliquera toutes les migrations et cr√©era la base de donn√©es avec la structure d√©finie dans le contexte.
 
-En cas de modifications ou d'ajouts dans le schÈma de base de donnÈes, n'oubliez pas de crÈer une nouvelle migration :
+En cas de modifications ou d'ajouts dans le sch√©ma de base de donn√©es, n'oubliez pas de cr√©er une nouvelle migration :
 
 ```bash
 dotnet ef migrations add NouvelleMigration
@@ -185,30 +185,30 @@ Puis, appliquez-la :
 dotnet ef database update
 ```
 
-Le projet est maintenant prÍt ‡ Ítre utilisÈ et ‡ communiquer avec la base de donnÈes.
+Le projet est maintenant pr√™t √† √™tre utilis√© et √† communiquer avec la base de donn√©es.
 
 
 
 ## Configuration et Automatisation des Normes REST
 
-Pour garantir une conformitÈ stricte avec les normes REST tout en automatisant les processus de requÍtes, le projet utilise **OData** associÈ ‡ **Entity Framework Core**. Cette combinaison permet de simplifier les opÈrations CRUD tout en optimisant les requÍtes pour rÈcupÈrer uniquement les donnÈes nÈcessaires.
+Pour garantir une conformit√© stricte avec les normes REST tout en automatisant les processus de requ√™tes, le projet utilise **OData** associ√© √† **Entity Framework Core**. Cette combinaison permet de simplifier les op√©rations CRUD tout en optimisant les requ√™tes pour r√©cup√©rer uniquement les donn√©es n√©cessaires.
 
 ### Packages Requis
 
-Pour configurer OData dans le projet, les packages suivants doivent Ítre installÈs :
+Pour configurer OData dans le projet, les packages suivants doivent √™tre install√©s :
 
 ```bash
  dotnet add package Microsoft.AspNetCore.OData
  dotnet add package Microsoft.OData.ModelBuilder
 ```
 
-> **Note :** ¿ l'heure actuelle, OData ne prend pas en charge les APIs minimales. Par consÈquent, il est nÈcessaire d'utiliser l'approche traditionnelle basÈe sur les controllers.
+> **Note :** √Ä l'heure actuelle, OData ne prend pas en charge les APIs minimales. Par cons√©quent, il est n√©cessaire d'utiliser l'approche traditionnelle bas√©e sur les controllers.
 
 ---
 
 ### Configuration des Controllers OData
 
-Pour chaque entitÈ, un contrÙleur OData est crÈÈ. Voici un exemple de configuration d'un contrÙleur pour l'entitÈ `Produit` :
+Pour chaque entit√©, un contr√¥leur OData est cr√©√©. Voici un exemple de configuration d'un contr√¥leur pour l'entit√© `Produit` :
 
 ```csharp
 [Route("api/[controller]")]
@@ -235,9 +235,9 @@ public class ProduitController(GestionCommerceContext context) : ODataController
 
 ### Gestion des EDM (Entity Data Models)
 
-L'utilisation des EDM permet de contrÙler les donnÈes exposÈes par les endpoints OData. Cela permet de limiter l'exposition des propriÈtÈs et de structurer les relations entre entitÈs.
+L'utilisation des EDM permet de contr√¥ler les donn√©es expos√©es par les endpoints OData. Cela permet de limiter l'exposition des propri√©t√©s et de structurer les relations entre entit√©s.
 
-Exemple de dÈfinition d'un EDM :
+Exemple de d√©finition d'un EDM :
 
 ```csharp
 using Microsoft.OData.ModelBuilder;
@@ -257,11 +257,11 @@ public static IEdmModel GetEdmModel()
 
 ---
 
-### Limitation des DonnÈes ExposÈes
+### Limitation des Donn√©es Expos√©es
 
-Pour renforcer la sÈcuritÈ et limiter l'exposition des donnÈes, il est possible de n'utiliser que des DTOs (Data Transfer Objects) dans les EDM. Cela permet de masquer la structure interne de la base de donnÈes tout en contrÙlant les propriÈtÈs exposÈes.
+Pour renforcer la s√©curit√© et limiter l'exposition des donn√©es, il est possible de n'utiliser que des DTOs (Data Transfer Objects) dans les EDM. Cela permet de masquer la structure interne de la base de donn√©es tout en contr√¥lant les propri√©t√©s expos√©es.
 
-De plus, pour des raisons de sÈcuritÈ ou de lisibilitÈ, il est Ègalement possible de renommer des propriÈtÈs exposÈes tout en conservant le nom d'origine des colonnes en base de donnÈes. Par exemple :
+De plus, pour des raisons de s√©curit√© ou de lisibilit√©, il est √©galement possible de renommer des propri√©t√©s expos√©es tout en conservant le nom d'origine des colonnes en base de donn√©es. Par exemple :
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -277,46 +277,46 @@ public class ProduitDTO
 }
 ```
 
-Dans cet exemple, la propriÈtÈ `Nom` exposÈe dans l'API fait rÈfÈrence ‡ la colonne `NomProduit` dans la base de donnÈes, permettant ainsi de masquer la structure interne sans compromettre le mapping des donnÈes.
+Dans cet exemple, la propri√©t√© `Nom` expos√©e dans l'API fait r√©f√©rence √† la colonne `NomProduit` dans la base de donn√©es, permettant ainsi de masquer la structure interne sans compromettre le mapping des donn√©es.
 
 ---
 
-### ExÈcution des RequÍtes OData
+### Ex√©cution des Requ√™tes OData
 
-Les requÍtes OData permettent d'exÈcuter des filtres complexes tout en limitant le volume de donnÈes retournÈ. Par exemple :
+Les requ√™tes OData permettent d'ex√©cuter des filtres complexes tout en limitant le volume de donn√©es retourn√©. Par exemple :
 
-* Obtenir les produits avec uniquement les propriÈtÈs `Nom` et `ProductId` :
+* Obtenir les produits avec uniquement les propri√©t√©s `Nom` et `ProductId` :
 
 ```
 GET https://localhost:7192/odata/Produit?$select=Nom,ProductId
 ```
 
-* Obtenir les produits et leurs lignes de commande associÈes :
+* Obtenir les produits et leurs lignes de commande associ√©es :
 
 ```
 GET https://localhost:7192/odata/Produit?$expand=LigneCommandes
 ```
 
-Cette structure permet une gestion centralisÈe des accËs aux donnÈes, tout en automatisant le respect des normes REST via OData.
+Cette structure permet une gestion centralis√©e des acc√®s aux donn√©es, tout en automatisant le respect des normes REST via OData.
 
 
 ### Limitations d'OData
 
-OData est un protocole puissant pour interroger et manipuler des donnÈes via des API RESTful. Cependant, il prÈsente certaines limitations notables ‡ prendre en compte lors de son utilisation :
+OData est un protocole puissant pour interroger et manipuler des donn√©es via des API RESTful. Cependant, il pr√©sente certaines limitations notables √† prendre en compte lors de son utilisation :
 
-1. **GÈnÈration de clients OData :**
+1. **G√©n√©ration de clients OData :**
 
-   * Actuellement, le seul client officiellement pris en charge pour gÈnÈrer des requÍtes OData est le package `Microsoft.OData.Client` pour .NET. Ce package est activement maintenu par les contributeurs officiels d'OData et offre une abstraction puissante pour interroger des donnÈes de maniËre typÈe via LINQ.
-   * Pour d'autres langages, il n'existe pas de package standardisÈ officiellement maintenu. Cependant, il existe des bibliothËques communautaires et open source pour des langages comme Java, JavaScript ou Python, mais leur niveau de support peut varier.
+   * Actuellement, le seul client officiellement pris en charge pour g√©n√©rer des requ√™tes OData est le package `Microsoft.OData.Client` pour .NET. Ce package est activement maintenu par les contributeurs officiels d'OData et offre une abstraction puissante pour interroger des donn√©es de mani√®re typ√©e via LINQ.
+   * Pour d'autres langages, il n'existe pas de package standardis√© officiellement maintenu. Cependant, il existe des biblioth√®ques communautaires et open source pour des langages comme Java, JavaScript ou Python, mais leur niveau de support peut varier.
 
 2. **Conversion des metadata en OpenAPI :**
 
-   * OData expose les mÈtadonnÈes de ses services sous forme d'un document CSDL (Common Schema Definition Language), mais il n'existe pas de moyen standardisÈ ou officiellement soutenu pour convertir ces mÈtadonnÈes en OpenAPI.
-   * Bien qu'il existe des outils open source comme `odata-openapi`, ceux-ci ne sont pas officiellement pris en charge par le consortium OData et peuvent prÈsenter des limitations ou des diffÈrences d'implÈmentation.
+   * OData expose les m√©tadonn√©es de ses services sous forme d'un document CSDL (Common Schema Definition Language), mais il n'existe pas de moyen standardis√© ou officiellement soutenu pour convertir ces m√©tadonn√©es en OpenAPI.
+   * Bien qu'il existe des outils open source comme `odata-openapi`, ceux-ci ne sont pas officiellement pris en charge par le consortium OData et peuvent pr√©senter des limitations ou des diff√©rences d'impl√©mentation.
 
-3. **Couche d'abstraction pour l'interrogation des donnÈes :**
+3. **Couche d'abstraction pour l'interrogation des donn√©es :**
 
-   * Le client OData pour .NET offre une couche d'abstraction puissante permettant de manipuler des donnÈes via LINQ, ce qui simplifie les requÍtes complexes.
+   * Le client OData pour .NET offre une couche d'abstraction puissante permettant de manipuler des donn√©es via LINQ, ce qui simplifie les requ√™tes complexes.
 
 #### Exemple d'utilisation d'un client OData en .NET :
 
@@ -324,8 +324,8 @@ OData est un protocole puissant pour interroger et manipuler des donnÈes via des
 var serviceRoot = "https://services.odata.org/V4/TripPinServiceRW/";
 var context = new DefaultContainer(new Uri(serviceRoot));
 
-// Exemple : rÈcupÈrer les personnes dont le prÈnom commence par "S",
-// inclure leurs amis (expand), et ne sÈlectionner que le prÈnom et la liste des amis (select)
+// Exemple : r√©cup√©rer les personnes dont le pr√©nom commence par "S",
+// inclure leurs amis (expand), et ne s√©lectionner que le pr√©nom et la liste des amis (select)
 var query = context.People
     .Where(p => p.FirstName.StartsWith("S"))
     .Select(p => new
@@ -338,30 +338,30 @@ var query = context.People
 var people = await query.ExecuteAsync();
 ```
 
-En rÈsumÈ, bien qu'OData fournisse une structure puissante et un modËle standardisÈ pour interroger des API RESTful, les limitations liÈes ‡ la gÈnÈration de clients et ‡ la conversion vers OpenAPI doivent Ítre prises en compte lors de la planification d'une architecture basÈe sur OData.
+En r√©sum√©, bien qu'OData fournisse une structure puissante et un mod√®le standardis√© pour interroger des API RESTful, les limitations li√©es √† la g√©n√©ration de clients et √† la conversion vers OpenAPI doivent √™tre prises en compte lors de la planification d'une architecture bas√©e sur OData.
 
 
 ## Authentification
 
-L'authentification est un aspect essentiel pour sÈcuriser l'accËs aux ressources de l'API. Dans ce projet, nous avons choisi d'utiliser **Auth0**, un fournisseur de gestion des identitÈs (IAM) qui propose une intÈgration simple avec OAuth 2.0 et JWT (JSON Web Tokens).
+L'authentification est un aspect essentiel pour s√©curiser l'acc√®s aux ressources de l'API. Dans ce projet, nous avons choisi d'utiliser **Auth0**, un fournisseur de gestion des identit√©s (IAM) qui propose une int√©gration simple avec OAuth 2.0 et JWT (JSON Web Tokens).
 
 ### Pourquoi Auth0 ?
 
-* **FacilitÈ de mise en úuvre :** Auth0 propose une documentation complËte et des exemples prÍts ‡ l'emploi pour implÈmenter rapidement une authentification sÈcurisÈe.
-* **ModularitÈ :** Auth0 permet de gÈrer plusieurs types de connexions (e-mail/mot de passe, rÈseaux sociaux, SSO, etc.).
-* **ScalabilitÈ :** Auth0 est conÁu pour s'intÈgrer ‡ des applications de toutes tailles.
-* **ConformitÈ :** Auth0 respecte les normes de sÈcuritÈ telles que OAuth 2.0, OpenID Connect et JWT.
-* **Limitation :** Auth0 est un service commercial amÈricain. Pour des applications nÈcessitant une infrastructure 100 % locale ou un hÈbergement en dehors des …tats-Unis, des alternatives telles que **Keycloak** ou **IdentityServer** peuvent Ítre envisagÈes.
+* **Facilit√© de mise en ≈ìuvre :** Auth0 propose une documentation compl√®te et des exemples pr√™ts √† l'emploi pour impl√©menter rapidement une authentification s√©curis√©e.
+* **Modularit√© :** Auth0 permet de g√©rer plusieurs types de connexions (e-mail/mot de passe, r√©seaux sociaux, SSO, etc.).
+* **Scalabilit√© :** Auth0 est con√ßu pour s'int√©grer √† des applications de toutes tailles.
+* **Conformit√© :** Auth0 respecte les normes de s√©curit√© telles que OAuth 2.0, OpenID Connect et JWT.
+* **Limitation :** Auth0 est un service commercial am√©ricain. Pour des applications n√©cessitant une infrastructure 100 % locale ou un h√©bergement en dehors des √âtats-Unis, des alternatives telles que **Keycloak** ou **IdentityServer** peuvent √™tre envisag√©es.
 
 ### Mise en place de l'authentification avec Auth0
 
-Pour implÈmenter une authentification basique avec Auth0, suivez ces Ètapes :
+Pour impl√©menter une authentification basique avec Auth0, suivez ces √©tapes :
 
-1. **CrÈation d'une API sur Auth0 :**
+1. **Cr√©ation d'une API sur Auth0 :**
 
-   * Connectez-vous ‡ votre tableau de bord Auth0.
-   * AccÈdez ‡ **APIs > Create API**.
-   * Renseignez le nom et l'identifiant de l'API. Cet identifiant est unique et immuable. Par convention, il est conseillÈ d'utiliser l'URL de l'API (par exemple, `https://gestion-commerce.com`).
+   * Connectez-vous √† votre tableau de bord Auth0.
+   * Acc√©dez √† **APIs > Create API**.
+   * Renseignez le nom et l'identifiant de l'API. Cet identifiant est unique et immuable. Par convention, il est conseill√© d'utiliser l'URL de l'API (par exemple, `https://gestion-commerce.com`).
 
 2. **Ajout du middleware d'authentification dans le projet :**
 
@@ -390,13 +390,13 @@ Ajoutez ensuite le middleware d'authentification et d'autorisation :
 ```csharp
 app.UseAuthentication();
 
-// Obligatoire mÍme si utilisation uniquememnt pour l'autthenttification
+// Obligatoire m√™me si utilisation uniquememnt pour l'autthenttification
 app.UseAuthorization();
 ```
 
 3. **Obtention d'un access token :**
 
-Pour obtenir un token d'accËs, exÈcutez la commande suivante :
+Pour obtenir un token d'acc√®s, ex√©cutez la commande suivante :
 
 ```bash
 curl --request POST \
@@ -410,7 +410,7 @@ curl --request POST \
   }'
 ```
 
-Le token obtenu doit Ítre inclus dans chaque requÍte vers les endpoints sÈcurisÈs :
+Le token obtenu doit √™tre inclus dans chaque requ√™te vers les endpoints s√©curis√©s :
 
 ```bash
 curl -X GET "https://localhost:7192/odata/Produit?expand=LigneCommandes" \
@@ -418,7 +418,86 @@ curl -X GET "https://localhost:7192/odata/Produit?expand=LigneCommandes" \
 ```
 
 
-// Par la suite crÈÈ une section sur les authorisation. 
+
+// Par la suite cr√©√© une section sur les authorisation. 
+
+
+## Consid√©rations
+
+Dans le cadre de la structuration de l'API, il est essentiel de bien r√©fl√©chir √† l'architecture des contr√¥leurs et des agr√©gats. En effet, le choix de l'agr√©gation forte ou faible d√©termine la mani√®re dont les ressources sont organis√©es, expos√©es et g√©r√©es au sein de l'API.
+
+### 1. Agr√©gation Forte vs Faible
+
+* **Agr√©gation Forte :**
+
+  * Une agr√©gation forte implique que la ressource est strictement li√©e √† un agr√©gat principal. Les actions sur cette ressource doivent imp√©rativement passer par l'agr√©gat auquel elle est associ√©e. Les contr√¥leurs ne sont pas cr√©√©s ind√©pendamment pour ces ressources mais sont int√©gr√©s au contr√¥leur principal de l'agr√©gat.
+  * Exemple : Si une commande (`order`) poss√®de des lignes de commande (`order lines`), les lignes de commande seront toujours manipul√©es √† travers le contr√¥leur des commandes.
+  * Les routes pour une agr√©gation forte peuvent suivre la structure suivante :
+
+    * `POST /orders/{orderId}/lines`
+    * `PUT /orders/{orderId}/lines/{lineId}`
+    * `DELETE /orders/{orderId}/lines/{lineId}`
+
+* **Agr√©gation Faible :**
+
+  * Une agr√©gation faible signifie que la ressource peut √™tre g√©r√©e ind√©pendamment, bien qu'elle soit rattach√©e logiquement √† un agr√©gat principal. Les contr√¥leurs peuvent √™tre cr√©√©s s√©par√©ment pour ces ressources.
+  * Exemple : Un commentaire (`comment`) peut √™tre attach√© √† un article (`article`), mais il peut √©galement √™tre modifi√© ou supprim√© sans passer par le contr√¥leur d'articles.
+  * Les routes peuvent √™tre :
+
+    * `POST /comments`
+    * `PUT /comments/{commentId}`
+
+### 2. Gestion des Relations et Limitation des Niveaux de Routage
+
+Pour conserver la lisibilit√© et la simplicit√© des routes, il est recommand√© de ne pas d√©passer trois niveaux de profondeur :
+
+* ‚úÖ `PUT /orders/{orderId}/lines/{lineId}`
+* ‚ùå `PUT /orders/{orderId}/lines/{lineId}/taxes/{taxId}`
+
+Pour les niveaux plus profonds, il est pr√©f√©rable d'utiliser des vues d√©normalis√©es ou des endpoints sp√©cialis√©s :
+
+* `PUT /orderLines/{lineId}/update-taxes?tax_id=1`
+
+Cela permet d'am√©liorer les performances et d'√©viter des requ√™tes complexes avec de multiples jointures.
+
+### 3. Identification des Modules et D√©composition
+
+* Lorsqu'une ressource est modifi√©e fr√©quemment ou requiert des r√®gles m√©tier sp√©cifiques, il est envisageable de la transformer en module distinct.
+* Un module peut contenir plusieurs agr√©gats. Par exemple, le module de `Facturation` peut inclure `Factures`, `Paiements` et `Remboursements`, chacun √©tant un agr√©gat distinct mais logiquement group√© sous le m√™me module.
+
+### 4. Conclusion
+
+La structuration des agr√©gats et des modules doit √™tre pens√©e en amont pour garantir la coh√©rence des donn√©es, la simplicit√© des routes et l'√©volutivit√© de l'API. Un contr√¥le strict des agr√©gations fortes et faibles permet de conserver un design coh√©rent tout en limitant le risque d'incoh√©rences transactionnelles.
+
+
+
+
+
+
+
+// 
+
+Expliqu√© √©galement que cela peut avoir un vraie impact sur l'acc√©s au donn√©es un State Management donc
+dans un store. Et donc un store c'est pareille au niveau des routes, c'est "mapp√©". Mais c'est un sujet auquel
+j'ai pas assez appprofondi et fait de recherche. 
+
+
+
+
+// Faire des recherche sur ce concept
+Les r√®gles d'invariance
+Recherche sur les consistance transactionnels
+
+
+
+
+
+
+
+
+
+
+
 
 
 

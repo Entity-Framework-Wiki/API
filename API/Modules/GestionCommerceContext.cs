@@ -1,13 +1,13 @@
-﻿using API.Modules.Billing.DAL.Facture;
-using API.Modules.Billing.DAL.Paiement;
-using API.Modules.Orders.DAL.Commande;
-using API.Modules.Orders.DAL.LigneCommande;
-using API.Modules.Products.DAL.Categorie;
-using API.Modules.Products.DAL.Fournisseur;
-using API.Modules.Products.DAL.Inventaire;
-using API.Modules.Products.DAL.Marque;
-using API.Modules.Products.DAL.Produit;
-using API.Modules.ReportsAnalytics.DAL.Rapport;
+﻿using API.Modules.Billing.Facture.DAL;
+using API.Modules.Billing.Paiement.DAL;
+using API.Modules.Orders.Commande.DAL;
+using API.Modules.Orders.LigneCommande.DAL;
+using API.Modules.Products.Categorie.DAL;
+using API.Modules.Products.Fournisseur.DAL;
+using API.Modules.Products.Inventaire.DAL;
+using API.Modules.Products.Marque.DAL;
+using API.Modules.Products.Produit.DAL;
+using API.Modules.ReportsAnalytics.Rapport.DAL;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Modules;

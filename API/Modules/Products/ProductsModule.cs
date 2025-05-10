@@ -1,4 +1,4 @@
-﻿using API.Modules.Products.Endpoints;
+﻿using API.Modules.Products.Produit;
 
 namespace API.Modules.Products;
 

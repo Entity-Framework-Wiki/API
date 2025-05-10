@@ -1,9 +1,5 @@
 ﻿using API.Modules.Auth;
 using API.Modules.Products;
-using API.Modules.Products.DAL.Produit;
-using Microsoft.AspNetCore.OData;
-using Microsoft.OData.Edm;
-using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 
 namespace API.Modules;
@@ -24,10 +20,8 @@ public static class AppModule
         });
 
         // MVC
-        builder.Services.AddControllers().AddOData(options =>
-        {
-            options.Select().Filter().OrderBy().Expand().Count().SetMaxTop(100).AddRouteComponents("odata", GetEdmModel());
-        })
+        builder.Services.AddControllers()
+            .RegisterOdata()
             .RegisterProductsControllers();
 
         builder.Services.RegisterAuthModule();
@@ -48,7 +42,7 @@ public static class AppModule
 
         app.UseHttpsRedirection();
 
-        // MVC ??
+        // MVC 
         app.UseRouting();
 
         app.RegisterHttpPipelineAuth();
@@ -69,17 +63,5 @@ public static class AppModule
         // app.MapBillingEndpoints();
 
         return app;
-    }
-
-    private static IEdmModel GetEdmModel()
-    {
-        var builder = new ODataConventionModelBuilder();
-
-        var produits = builder.EntitySet<Produit>("Produit");
-
-        produits.EntityType.HasMany(p => p.LigneCommandes); // Déclarer comme navigation property
-
-
-        return builder.GetEdmModel();
     }
 }

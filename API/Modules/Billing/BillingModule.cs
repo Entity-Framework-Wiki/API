@@ -1,4 +1,4 @@
-﻿using API.Modules.Billing.Endpoints;
+﻿using API.Modules.Billing.Paiement;
 
 namespace API.Modules.Billing;
 

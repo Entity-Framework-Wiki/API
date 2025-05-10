@@ -431,7 +431,7 @@ Dans le cadre de la structuration de l'API, il est essentiel de bien réfléchir
 * **Agrégation Forte :**
 
   * Une agrégation forte implique que la ressource est strictement liée à un agrégat principal. Les actions sur cette ressource doivent impérativement passer par l'agrégat auquel elle est associée. Les contrôleurs ne sont pas créés indépendamment pour ces ressources mais sont intégrés au contrôleur principal de l'agrégat.
-  * Exemple : Si une commande (`order`) possède des lignes de commande (`order lines`), les lignes de commande seront toujours manipulées à travers le contrôleur des commandes.
+  * Exemple : Si une commande (`order`) possède des lignes de commande (`lines`), les lignes de commande seront toujours manipulées à travers le contrôleur des commandes.
   * Les routes pour une agrégation forte peuvent suivre la structure suivante :
 
     * `POST /orders/{orderId}/lines`
@@ -456,9 +456,17 @@ Pour conserver la lisibilité et la simplicité des routes, il est recommandé d
 
 Pour les niveaux plus profonds, il est préférable d'utiliser des vues dénormalisées ou des endpoints spécialisés :
 
-* `PUT /orderLines/{lineId}/update-taxes?tax_id=1`
+* `PUT /orders/{orderId}/lines/{lineId}/update-taxes?tax_id=1`
+
+Pour les opérations en lecture seule, les vues dénormalisées (orderLines) permettent d'accéder aux informations sans parcourir plusieurs niveaux d'agrégats. Par exemple :
+
+* `GET /orderLines/{lineId}/taxes`
+
+Cela permet d'obtenir toutes les taxes associées à une ligne de commande de manière optimisée et sans passer par plusieurs niveaux d'URL.
 
 Cela permet d'améliorer les performances et d'éviter des requêtes complexes avec de multiples jointures.
+
+
 
 ### 3. Identification des Modules et Décomposition
 

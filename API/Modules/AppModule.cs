@@ -1,6 +1,5 @@
 ﻿using API.Modules.Products;
 using API.Modules.Products.DAL.Produit;
-using API.Modules.Shared.Swagger.Filters;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
@@ -21,7 +20,6 @@ public static class AppModule
         builder.Services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "API Documentation", Version = "v1" });
-            options.DocumentFilter<HideODataSchemasFilter>();
         });
 
         // MVC

@@ -57,6 +57,7 @@ public static class AppModule
             _ = endpoints.MapControllers();
         });
 
+        // Api Minimal
         // app.MapBillingEndpoints();
 
         return app;

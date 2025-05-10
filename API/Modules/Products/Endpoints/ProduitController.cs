@@ -11,6 +11,7 @@ public class ProduitController(GestionCommerceContext context) : ODataController
     private readonly GestionCommerceContext _context = context;
 
     [Route("odata/[controller]")]
+    [HttpGet]
     [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Get(ODataQueryOptions<Produit> options)
     {

@@ -217,6 +217,7 @@ public class ProduitController(GestionCommerceContext context) : ODataController
     private readonly GestionCommerceContext _context = context;
 
     [Route("odata/[controller]")]
+    [HttpGet]
     [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Get(ODataQueryOptions<Produit> options)
     {
@@ -287,13 +288,13 @@ Les requêtes OData permettent d'exécuter des filtres complexes tout en limitant 
 * Obtenir les produits avec uniquement les propriétés `Nom` et `ProductId` :
 
 ```
-GET https://localhost:7192/odata/Produits?$select=Nom,ProductId
+GET https://localhost:7192/odata/Produit?$select=Nom,ProductId
 ```
 
 * Obtenir les produits et leurs lignes de commande associées :
 
 ```
-GET https://localhost:7192/odata/Produits?$expand=LigneCommandes
+GET https://localhost:7192/odata/Produit?$expand=LigneCommandes
 ```
 
 Cette structure permet une gestion centralisée des accès aux données, tout en automatisant le respect des normes REST via OData.

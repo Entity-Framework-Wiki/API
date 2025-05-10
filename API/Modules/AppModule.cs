@@ -1,4 +1,5 @@
-﻿using API.Modules.Products;
+﻿using API.Modules.Auth;
+using API.Modules.Products;
 using API.Modules.Products.DAL.Produit;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.Edm;
@@ -29,6 +30,9 @@ public static class AppModule
         })
             .RegisterProductsControllers();
 
+        builder.Services.RegisterAuthModule();
+
+
         return builder;
     }
 
@@ -44,6 +48,11 @@ public static class AppModule
 
         app.UseHttpsRedirection();
 
+        // MVC ??
+        app.UseRouting();
+
+        app.RegisterHttpPipelineAuth();
+
         return app;
     }
 
@@ -51,7 +60,6 @@ public static class AppModule
     public static WebApplication MapEndpoints(this WebApplication app)
     {
         // MVC
-        app.UseRouting();
         app.UseEndpoints(endpoints =>
         {
             _ = endpoints.MapControllers();

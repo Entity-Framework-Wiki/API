@@ -341,14 +341,84 @@ var people = await query.ExecuteAsync();
 En résumé, bien qu'OData fournisse une structure puissante et un modèle standardisé pour interroger des API RESTful, les limitations liées à la génération de clients et à la conversion vers OpenAPI doivent être prises en compte lors de la planification d'une architecture basée sur OData.
 
 
+## Authentification
+
+L'authentification est un aspect essentiel pour sécuriser l'accès aux ressources de l'API. Dans ce projet, nous avons choisi d'utiliser **Auth0**, un fournisseur de gestion des identités (IAM) qui propose une intégration simple avec OAuth 2.0 et JWT (JSON Web Tokens).
+
+### Pourquoi Auth0 ?
+
+* **Facilité de mise en œuvre :** Auth0 propose une documentation complète et des exemples prêts à l'emploi pour implémenter rapidement une authentification sécurisée.
+* **Modularité :** Auth0 permet de gérer plusieurs types de connexions (e-mail/mot de passe, réseaux sociaux, SSO, etc.).
+* **Scalabilité :** Auth0 est conçu pour s'intégrer à des applications de toutes tailles.
+* **Conformité :** Auth0 respecte les normes de sécurité telles que OAuth 2.0, OpenID Connect et JWT.
+* **Limitation :** Auth0 est un service commercial américain. Pour des applications nécessitant une infrastructure 100 % locale ou un hébergement en dehors des États-Unis, des alternatives telles que **Keycloak** ou **IdentityServer** peuvent être envisagées.
+
+### Mise en place de l'authentification avec Auth0
+
+Pour implémenter une authentification basique avec Auth0, suivez ces étapes :
+
+1. **Création d'une API sur Auth0 :**
+
+   * Connectez-vous à votre tableau de bord Auth0.
+   * Accédez à **APIs > Create API**.
+   * Renseignez le nom et l'identifiant de l'API. Cet identifiant est unique et immuable. Par convention, il est conseillé d'utiliser l'URL de l'API (par exemple, `https://gestion-commerce.com`).
+
+2. **Ajout du middleware d'authentification dans le projet :**
+
+Installez le package suivant :
+
+```bash
+ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+```
+
+Modifiez le fichier `Program.cs` ou `Startup.cs` pour configurer l'authentification :
+
+```csharp
+services.AddAuthentication(options =>
+   {
+       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+   }).AddJwtBearer(options =>
+   {
+       options.Authority = "https://dev-6s6s0f4wpurx7gmw.eu.auth0.com/";
+       options.Audience = "https://gestion-commerce.com";
+   });
+```
+
+Ajoutez ensuite le middleware d'authentification et d'autorisation :
+
+```csharp
+app.UseAuthentication();
+
+// Obligatoire même si utilisation uniquememnt pour l'autthenttification
+app.UseAuthorization();
+```
+
+3. **Obtention d'un access token :**
+
+Pour obtenir un token d'accès, exécutez la commande suivante :
+
+```bash
+curl --request POST \
+  --url https://dev-6s6s0f4wpurx7gmw.eu.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{
+    "client_id": "votre_client_id",
+    "client_secret": "votre_client_secret",
+    "audience": "https://gestion-commerce.com",
+    "grant_type": "client_credentials"
+  }'
+```
+
+Le token obtenu doit être inclus dans chaque requête vers les endpoints sécurisés :
+
+```bash
+curl -X GET "https://localhost:7192/odata/Produit?expand=LigneCommandes" \
+  -H "Authorization: Bearer <access_token>"
+```
 
 
-
-
-
-
-
-
+// Par la suite créé une section sur les authorisation. 
 
 
 

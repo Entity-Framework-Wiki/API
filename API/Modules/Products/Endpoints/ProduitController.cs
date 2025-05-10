@@ -1,10 +1,12 @@
 ﻿using API.Modules.Products.DAL.Produit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace API.Modules.Products.Endpoints;
 
+[Authorize]
 [Route("api/[controller]")]
 public class ProduitController(GestionCommerceContext context) : ODataController
 {

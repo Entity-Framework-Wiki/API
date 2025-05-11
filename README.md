@@ -421,6 +421,7 @@ curl -X GET "https://localhost:7192/odata/Produit?expand=LigneCommandes" \
 
 // Par la suite créé une section sur les authorisation. 
 
+// Crée une section sur l'authentification par cookie
 
 ## Considérations
 
@@ -480,6 +481,21 @@ La structuration des agrégats et des modules doit être pensée en amont pour g
 
 
 
+//Considération
+
+La maniiére dont je construit cette article est fondamentalement concentré sur le bon sens (donc pas de DDD ou quoi que ce soit)
+pour se concentré sur les considération importante à prendre en compte. Parceque généralement on a tendance à mal comprendre les choses
+et appliqué c'est marqué et c'est dans les bonnes pratique sans comprendre le sens dérriére.
+
+Par exemple le principe d'agrégat va automatiiquement se concentrer sur le métier et donc orienté automatiquement
+la structure du code et ou le placer. C'est les spécifications fonctionnels qui vont orienté ou placer le code
+indirectement. Les contraintes des agrégat permet d'améliorer la maintenance, diminuer les bugs car cela amméliore
+la consistance transactionnel. 
+
+Les méthode DELETE devrais également implémenté odata. 
+Mais là n'est pas la question. Une considération importante c'est de géré les suppression par grappe.
+Un article doit également avoir ses commentaire relié mais la catégorie auquel elle appartient ne devra 
+pas être supprimé. 
 
 
 
@@ -495,7 +511,7 @@ j'ai pas assez appprofondi et fait de recherche.
 // Faire des recherche sur ce concept
 Les règles d'invariance
 Recherche sur les consistance transactionnels
-
+Expliqué qu'un agrégat peut être mutable mais ces objeets de valeur / entité attaché sont imutable. 
 
 
 
